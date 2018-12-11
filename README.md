@@ -1,13 +1,23 @@
 # Memory Game Project
 
-## Table of Contents
 
-* [Instructions](#instructions)
+## Game Details
+
+A classic and awesome memory game consisting of 16 cards arranged on a 4x4 grid. 
 
 ## Instructions
+- Player clicks a first card to flip it
+- Player clicks a second card to flip it
+- If both cards match, they stay remain open
+- If both cards are not a match, they flip back
+- Player must open and match all 16 cards to win the game
+- Complete in the least amount of time and the least number of moves
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+## Dependencies
+- Player cannot click on open or matched cards. If they click on such cards, nothing will happen.
+- Star rating decreases after a certain number of moves are made and the game is not yet completed.
+- Timer stops when the game is completed.
+- Restart button can be clicked any time a player wishes to restart the game.
 
-
-
+## Play Now
 [Click here to play](https://jdlmasangkay.github.io/Memory-Game/).

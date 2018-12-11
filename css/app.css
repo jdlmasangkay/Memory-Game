@@ -1,0 +1,201 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/* Styles for the deck of cards */
+
+.deck {
+    width: 660px;
+    min-height: 680px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+    transform: rotateY(0);
+    background: #02b3e4;
+    font-size: 33px;
+    cursor: default;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #02ccba;
+    font-size: 33px;
+}
+
+/* Styles for the score panel */
+
+.score-panel {
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .timer {
+    display: inline-block;
+    padding: 0px 50px;
+    cursor: pointer;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+}
+
+/* Styles for modal box and contents*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modalContent {
+    background-color: #f4f4f4;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 70%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 11px 0 rgba(0, 0, 0, 0.5);
+}
+
+.winTrophy {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+.message {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+/* Styles for the modal button */
+
+.buttonWrapper {
+    text-align: center;
+}
+
+.button {
+    background: #02b3e4;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 11px 11px;
+    border: 0;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #02ccba;
+}
+
+/* Lay-out for medium screens */
+
+@media all and (max-width: 800px) {
+    .deck {
+        width: 580px;
+        min-height: 600px;
+    }
+
+    .deck .card {
+        width: 110px;
+        height: 110px;
+    }
+
+    .deck .card.open {
+        font-size: 27px;
+    }
+}
+
+/* Lay-out for small screens */
+
+@media all and (max-width: 600px) {
+    .deck {
+        width: 430px;
+        min-height: 450px;
+    }
+
+    .deck .card {
+        width: 80px;
+        height: 80px;
+    }
+
+    .deck .card.open {
+        font-size: 23px;
+    }
+}

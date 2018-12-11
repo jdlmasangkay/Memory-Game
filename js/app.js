@@ -1,11 +1,11 @@
- cards = ['fa fa-diamond', 'fa fa-diamond',
-          'fa fa-paper-plane-o', 'fa fa-paper-plane-o',
-          'fa fa-anchor', 'fa fa-anchor',
-          'fa fa-bolt', 'fa fa-bolt',
-          'fa fa-cube', 'fa fa-cube',
-          'fa fa-leaf', 'fa fa-leaf',
-          'fa fa-bicycle', 'fa fa-bicycle',
-          'fa fa-bomb', 'fa fa-bomb'];
+cards = ['fa fa-diamond', 'fa fa-diamond',
+         'fa fa-paper-plane-o', 'fa fa-paper-plane-o',
+         'fa fa-anchor', 'fa fa-anchor',
+         'fa fa-bolt', 'fa fa-bolt',
+         'fa fa-cube', 'fa fa-cube',
+         'fa fa-leaf', 'fa fa-leaf',
+         'fa fa-bicycle', 'fa fa-bicycle',
+         'fa fa-bomb', 'fa fa-bomb'];
 
 starsArray = ['fa fa-star', 'fa fa-star', 'fa fa-star'];
 
@@ -81,7 +81,9 @@ function generateDeck(cards) {
     return deck.join('');
 };
 
-// Function that takes in the click event as input parameter and flips clicked cards
+/* Function that takes in the click event as input parameter, uses event.target property
+along with evaluation of a series of check conditions, to see where the click event happened and handles
+it by flipping the card and temporarily adding it to the openCards array */
 function flipCards(event) {
     // Check that we haven't clicked on any other nodes except the <li> or child <i>
     if (event.target.nodeName !== 'LI' && event.target.nodeName !==  'I') {
@@ -118,6 +120,7 @@ function flipCards(event) {
         childCard = event.target;
     }
 
+    // Flips the clicked card by adding the class open and then adds it to the openCards array
     childCard.parentElement.classList.add('open');
     openCards.push(childCard);
 
@@ -133,13 +136,13 @@ function startTimer() {
         minutes++;
         seconds = 0;
     }
+
     // Displays time in 00:00 format by checking if minutes and seconds are < 10
     timerDisplay.innerHTML = (((minutes < 10) ? ('0' + minutes) : minutes) + ":" + ((seconds < 10) ? ('0' + seconds) : seconds));
 };
 
 // Function that takes in the parameter openCards array and checks if the two cards match
 function compareCards(openCards) {
-    // Compare classname of the first and second card in the openCards array
     if (openCards[0].className === openCards[1].className) {
         matched(openCards);
     } else {
@@ -147,7 +150,7 @@ function compareCards(openCards) {
     }
 };
 
-// Function that takes in not matched openCards as input parameter and flips them back
+// Function that takes in unmatched openCards as input parameter and flips them back
 function flipBack(openCards) {
     // Loop through each card and add new class/change style to indicate not match
     openCards.forEach(function(openCard) {
@@ -176,8 +179,10 @@ function matched(openCards) {
     moveCounter();
     starRating();
 
+    // Add two open matched cards to the matched cards array
     matchedCards.push(openCards[0], openCards[1]);
 
+    // Check if all cards matched by comparing length matched cards array to cards array
     if (matchedCards.length === cards.length) {
         clearInterval(timer);
         winGame();
@@ -193,13 +198,14 @@ function moveCounter() {
 // Function that keeps track of the star rating based on the number of moves made, and retuns stars remaining
 function starRating() {
     var starsTracker = starsPanel.getElementsByTagName('i');
+
     // If game finished in 11 moves or less, return and star rating remains at 3
     if (moves <= 11) {
         return;
-    // If finished between 11 to 16 moves, 3rd colored star element is replaced with empty star class
+    // If finished between 11 to 16 moves, 3rd colored star is replaced with empty star class
     } else if (moves > 11 && moves <= 16) {
         starsTracker.item(2).className = 'fa fa-star-o';
-    // If finished with more than 16 moves, 2nd colored star element is replaced with empty star class
+    // If finished with more than 16 moves, 2nd colored star is replaced with empty star class
     } else {
         starsTracker.item(1).className = 'fa fa-star-o';
     }
@@ -208,10 +214,13 @@ function starRating() {
     stars = document.querySelectorAll('.fa-star').length;
 };
 
+// Function that displays modal box after a player has correctly matched all 16 cards
 function winGame() {
     var finalScore = document.querySelector('.score');
     var finalTime = document.querySelector('.time');
 
+    /* Display modal box after a 1.2 seconds delay to give time for the last matched cards animation to run
+    and inserts the player game stats to the DOM */
     setTimeout(function() {
         modal.style.display = 'block';
         finalScore.innerHTML = 'You finished the game with ' + moves + ' moves and ' + stars + ' star(s)!!!';

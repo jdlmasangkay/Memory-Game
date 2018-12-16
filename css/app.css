@@ -37,6 +37,7 @@ h1 {
 
 .deck {
     width: 660px;
+    max-width: 100%;
     min-height: 680px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
@@ -81,6 +82,7 @@ h1 {
 .score-panel {
     text-align: left;
     width: 345px;
+    max-width: 100%;
     margin-bottom: 10px;
 }
 

@@ -37,7 +37,7 @@ function initGame() {
     // Insert value of moves variable into the DOM
     movesPanel.innerHTML = moves.toString();
     // Insert value of timer variable into the document
-    timerDisplay.innerHTML = '0' + minutes + ":" + '0' + seconds;
+    timerDisplay.innerHTML = `0${minutes}:0${seconds}`;
     // Generate the HTML of the stars panel and insert into the DOM
     starsPanel.innerHTML = generateStars(starsArray);
     // Shuffle the cards array
@@ -50,7 +50,7 @@ function initGame() {
 function generateStars (starsArray) {
     // Loop through each element in the stars array and create its HTML
     var stars = starsArray.map(function(star) {
-        return '<li><i class="' + star + '"></i></li>';
+        return `<li><i class="${star}"></i></li>`;
     });
 
     return stars.join('');
@@ -75,7 +75,7 @@ function shuffle(array) {
 function generateDeck(cards) {
     // Loop through each element in the cards array and create its HTML
     var deck = cards.map(function(card) {
-        return '<li class="card"><i class="' + card + '"></i></li>';
+        return `<li class="card"><i class="${card}"></i></li>`;
     });
 
     return deck.join('');
@@ -138,7 +138,7 @@ function startTimer() {
     }
 
     // Displays time in 00:00 format by checking if minutes and seconds are < 10
-    timerDisplay.innerHTML = (((minutes < 10) ? ('0' + minutes) : minutes) + ":" + ((seconds < 10) ? ('0' + seconds) : seconds));
+    timerDisplay.innerHTML = (((minutes < 10) ? `0${minutes}` : minutes) + ":" + ((seconds < 10) ? (`0${seconds}`) : seconds));
 };
 
 // Function that takes in the parameter openCards array and checks if the two cards match
@@ -223,11 +223,11 @@ function winGame() {
     and inserts the player game stats to the DOM */
     setTimeout(function() {
         modal.style.display = 'block';
-        finalScore.innerHTML = 'You finished the game with ' + moves + ' moves and ' + stars + ' star(s)!!!';
+        finalScore.innerHTML = `You finished the game with ${moves} moves and ${stars} star(s)!!!`;
         if (minutes >= 1) {
-            finalTime.innerHTML = 'Time completed: ' + minutes + ' minutes and ' + seconds + ' seconds.';
+            finalTime.innerHTML = `Time completed: ${minutes} minutes and ${seconds} seconds.`;
         } else {
-            finalTime.innerHTML = 'Time completed: ' + seconds + ' seconds.';
+            finalTime.innerHTML = `Time completed: ${seconds} seconds.`;
         }
     }, 1200);
 };
